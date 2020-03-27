@@ -7,8 +7,6 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     private GameObject bulletSpawnPoint;
-
-    private int health { get; set; }
     // Start is called before the first frame update
     void Start()
     {
