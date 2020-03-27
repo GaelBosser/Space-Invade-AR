@@ -2,15 +2,21 @@
 
 public class BulletScript : MonoBehaviour
 {
+    [SerializeField]
+    private int speed;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        GetComponent<Rigidbody>().AddForce(transform.forward * speed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * 10);
     }
+
+   /* public void OnBecameInvisible()
+    {
+        Destroy(gameObject, 5);
+    }*/
 }

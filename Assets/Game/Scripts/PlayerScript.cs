@@ -3,7 +3,10 @@
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject missile;
+    private GameObject missilePrefab;
+
+    [SerializeField]
+    private GameObject bulletSpawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +20,8 @@ public class PlayerScript : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(missile, transform.position, transform.rotation);
+            GameObject bullet = Instantiate(missilePrefab, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+            Destroy(bullet, 5f);
         }
 
 #elif UNITY_ANDROID || UNITY_IOS
