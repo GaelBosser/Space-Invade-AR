@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fc101ed72694844a1c08235b2cd668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missilePrefab: {fileID: 6056649346001139705, guid: 4a9432d41c2f04bcd8a87f968d9630da,
+  missilePrefab: {fileID: 3803012750920300674, guid: dc9da50ef367b6445811e8bcf099ecd6,
     type: 3}
   bulletSpawnPoint: {fileID: 1037850906}
 --- !u!135 &1100738724
