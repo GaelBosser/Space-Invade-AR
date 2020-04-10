@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour
             Destroy(bullet, 5f);
         }
 
+        //TODO bouger la camera
+
 #elif UNITY_ANDROID || UNITY_IOS
         Touch touch = Input.touches[0];
 
