@@ -37,6 +37,7 @@ public class BulletScript : MonoBehaviour
     {
         if (other.transform.CompareTag("Alien")) {
             other.gameObject.GetComponent<HealthScript>().UpdateLifeAndGetNewState(damageDone);
+            Destroy(this.gameObject);
         }
     }
 
