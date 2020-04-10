@@ -64,7 +64,8 @@ public class HealthScript : MonoBehaviour
             if(this.gameObject.CompareTag("Alien"))
             {
                 Debug.Log("Alien est mort");
-                ScoreManager.Instance.score += this.gameObject.GetComponent<AlienScript>().score;
+                ScoreManager.Instance.Score += this.gameObject.GetComponent<AlienScript>().score;
+                //TODO animation de mort
                 Destroy(this.gameObject);
             }
             else if (this.gameObject.CompareTag("Player"))

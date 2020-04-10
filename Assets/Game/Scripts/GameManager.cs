@@ -7,9 +7,8 @@ public enum GameProgress { NotStarted, InProgress, Paused, Ended }
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    public Text scoreText;
 
-    private static GameManager _instance;
+private static GameManager _instance;
     public static GameManager Instance
     {
         get
@@ -40,12 +39,8 @@ public class GameManager : MonoBehaviour
         gameProgress = GameProgress.InProgress;
     }
 
-    private void Update()
+    void Update()
     {
-        if(gameProgress == GameProgress.Ended)
-        {
-            scoreText.text = $"Score: {ScoreManager.Instance.score}";
-        }
     }
 
 }

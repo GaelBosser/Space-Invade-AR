@@ -35,7 +35,10 @@ public class AlienScript : MonoBehaviour
     void Update()
     {
         if(GameManager.Instance.gameProgress == GameProgress.InProgress)
+        {
+            transform.LookAt(GameManager.Instance.player.transform.position);
             transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.player.transform.position, speed * Time.deltaTime);
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -44,13 +47,10 @@ public class AlienScript : MonoBehaviour
         {
             Debug.Log("Alien Collide player");
             other.gameObject.GetComponent<HealthScript>().UpdateLifeAndGetNewState(damageDone);
-
-            Destroy(this.gameObject);
             /* TODO => 
-             * Feedback collision/mort de l'alien
              * Feedback dégâts subis/mort du joueur
              */
-
+            Destroy(this.gameObject);
         }
     }
 

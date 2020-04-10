@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -22,7 +23,20 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public int score { get; set; }
+    public Text scoreText;
+    private int _score;
+    public int Score
+    {
+        get => _score;
+        set
+        {
+            _score = value;
+            if (GameManager.Instance.gameProgress == GameProgress.InProgress)
+            {
+                scoreText.text = $"Score: {_score}";
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -30,6 +44,6 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
-        score = 0;
+        _score = 0;
     }
 }
