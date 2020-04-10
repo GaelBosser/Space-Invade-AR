@@ -29,7 +29,8 @@ public class PlayerScript : MonoBehaviour
 
         if(TouchPhase.Ended.Equals(touch.phase))
         {
-            Instantiate(projectile, transform.position, transform.rotation);
+            GameObject bullet = Instantiate(missilePrefab, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+            Destroy(bullet, 5f);
         }
 #endif
     }

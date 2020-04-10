@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance { get; private set; }
+    private static ScoreManager _instance;
+    public static ScoreManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<ScoreManager>();
+                if (_instance == null)
+                {
+                    _instance = new GameObject().AddComponent<ScoreManager>();
+                }
+            }
+
+            return _instance;
+        }
+    }
 
     public int score { get; set; }
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
+        if (_instance != null)
             Destroy(gameObject);
-        }
-    }
+        DontDestroyOnLoad(gameObject);
 
+        score = 0;
+    }
 }
