@@ -26,7 +26,7 @@ public class AlienSpawnScript : MonoBehaviour
         {
             do
             {
-                selectedIndex = Random.Range(0, spawnPoints.Count - 1);
+                selectedIndex = Random.Range(0, spawnPoints.Count);
             } while (selectedIndex == lastIndex);
 
             lastIndex = selectedIndex;

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game/Scenes/Robin.unity
+    guid: 8f9d2a47efb86654186dc87f5d4c4d1e
   m_configObjects: {}

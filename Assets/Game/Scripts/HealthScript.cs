@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class HealthScript : MonoBehaviour
 {
     private bool _isAlive;
+
 
     private int _life;
     public int Life
@@ -12,6 +13,11 @@ public class HealthScript : MonoBehaviour
         {
             _life = value;
             _isAlive = _life > 0;
+
+            if (this.gameObject.CompareTag("Player"))
+            {
+                GameManager.Instance.UpdateLifeInterface();
+            }
         }
     }
 
@@ -58,15 +64,17 @@ public class HealthScript : MonoBehaviour
 
         Debug.Log("-1 pv");
 
+
+
         //Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");
         if (!_isAlive)
         {
-            if(this.gameObject.CompareTag("Alien"))
+            if (this.gameObject.CompareTag("Alien"))
             {
                 Debug.Log("Alien est mort");
                 ScoreManager.Instance.Score += this.gameObject.GetComponent<AlienScript>().score;
                 //TODO animation de mort
-                Destroy(this.gameObject);
+                Destroy(this.transform.parent.gameObject);
             }
             else if (this.gameObject.CompareTag("Player"))
             {
