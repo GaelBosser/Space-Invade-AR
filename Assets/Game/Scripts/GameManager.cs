@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public enum Difficulty { Easy, Normal, Hard }
 public enum GameProgress { NotStarted, InProgress, Paused, Ended }
+
 public class GameManager : MonoBehaviour
 {
+    public GameObject player;
+    public Text scoreText;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -32,14 +37,14 @@ public class GameManager : MonoBehaviour
 
         difficulty = Difficulty.Normal;
 
-        gameProgress = GameProgress.NotStarted;
+        gameProgress = GameProgress.InProgress;
     }
 
     private void Update()
     {
         if(gameProgress == GameProgress.Ended)
         {
-            //ScoreManager.Instance.score;
+            scoreText.text = $"Score: {ScoreManager.Instance.score}";
         }
     }
 

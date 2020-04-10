@@ -56,16 +56,20 @@ public class HealthScript : MonoBehaviour
     {
         Life -= damageTaken;
 
+        Debug.Log("-1 pv");
+
         //Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");
-        if(!_isAlive)
+        if (!_isAlive)
         {
             if(this.gameObject.CompareTag("Alien"))
             {
+                Debug.Log("Alien est mort");
                 ScoreManager.Instance.score += this.gameObject.GetComponent<AlienScript>().score;
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             else if (this.gameObject.CompareTag("Player"))
             {
+                Debug.Log("Player est mort");
                 GameManager.Instance.gameProgress = GameProgress.Ended;
             }
         }
