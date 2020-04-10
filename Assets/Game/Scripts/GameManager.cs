@@ -1,18 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public enum Difficulty { Easy, Normal, Hard }
+public enum GameProgress { NotStarted, InProgress, Paused, Ended }
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject player;
+    public Text scoreText;
+
+    private static GameManager _instance;
+    public static GameManager Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+                if (_instance == null)
+                {
+                    _instance = new GameObject().AddComponent<GameManager>();
+                }
+            }
+
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Difficulty difficulty;
+    public GameProgress gameProgress;
+
+    private void Awake()
     {
-        
+        if (_instance != null) Destroy(this);
+        DontDestroyOnLoad(this);
+
+        difficulty = Difficulty.Normal;
+
+        gameProgress = GameProgress.InProgress;
     }
+
+    private void Update()
+    {
+        if(gameProgress == GameProgress.Ended)
+        {
+            scoreText.text = $"Score: {ScoreManager.Instance.score}";
+        }
+    }
+
 }

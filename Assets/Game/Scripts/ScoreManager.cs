@@ -2,17 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static ScoreManager _instance;
+    public static ScoreManager Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<ScoreManager>();
+                if (_instance == null)
+                {
+                    _instance = new GameObject().AddComponent<ScoreManager>();
+                }
+            }
+
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public int score { get; set; }
+
+    private void Awake()
     {
-        
+        if (_instance != null)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+
+        score = 0;
     }
 }

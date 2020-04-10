@@ -1,18 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool _isAlive;
+
+    private int _life;
+    public int Life
     {
-        
+        get => _life;
+        private set
+        {
+            _life = value;
+            _isAlive = _life > 0;
+        }
+    }
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        if (gameObject.CompareTag("Alien"))
+        {
+            switch (GameManager.Instance.difficulty)
+            {
+                case Difficulty.Easy:
+                    Life = 1;
+                    break;
+                case Difficulty.Normal:
+                    Life = 2;
+                    break;
+                case Difficulty.Hard:
+                    Life = 3;
+                    break;
+                default:
+                    Life = 2;
+                    break;
+            }
+        }
+        else if (gameObject.CompareTag("Player"))
+        {
+            Life = 3;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    /// <summary>
+    /// Updates the life of the current gameobject according to the damage taken, and get the new state of the gameobject (still alive or not)
+    /// </summary>
+    /// <param name="damageTaken">Damage taken to deduct from life</param>
+    public void UpdateLifeAndGetNewState(int damageTaken)
+    {
+        Life -= damageTaken;
+
+        Debug.Log("-1 pv");
+
+        //Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");
+        if (!_isAlive)
+        {
+            if(this.gameObject.CompareTag("Alien"))
+            {
+                Debug.Log("Alien est mort");
+                ScoreManager.Instance.score += this.gameObject.GetComponent<AlienScript>().score;
+                Destroy(this.gameObject);
+            }
+            else if (this.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Player est mort");
+                GameManager.Instance.gameProgress = GameProgress.Ended;
+            }
+        }
     }
 }
