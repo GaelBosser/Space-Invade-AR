@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5e78dfbd058c94fb42e31cdeff666e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alienPrefab: {fileID: 8605715106736651148, guid: 7ab3cf874beddcf4da6f05115492fa66,
+  alienPrefab: {fileID: 5359028495588226217, guid: 7ab3cf874beddcf4da6f05115492fa66,
     type: 3}
   spawnPoints:
   - {fileID: 1773469626}
