@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; 
 
 public class ScoreManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public Text scoreText;
+    public GameObject scoreText;
     private int _score;
     public int Score
     {
@@ -33,7 +34,8 @@ public class ScoreManager : MonoBehaviour
             _score = value;
             if (GameManager.Instance.gameProgress == GameProgress.InProgress)
             {
-                scoreText.text = $"Score: {_score}";
+                //scoreText.GetComponent<TextMeshPro>().text = $"Score: {_score}";
+                scoreText.GetComponent<Text>().text = $"Score: {_score}";
             }
         }
     }
@@ -45,5 +47,8 @@ public class ScoreManager : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
 
         _score = 0;
+    }
+    private void Update()
+    {
     }
 }
