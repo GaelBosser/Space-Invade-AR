@@ -76,7 +76,7 @@ public class HealthScript : MonoBehaviour
                 Debug.Log("Alien est mort");
                 ScoreManager.Instance.Score += this.gameObject.GetComponent<AlienScript>().score;
                 Instantiate(deathAnimation, transform.position, transform.rotation);
-                Destroy(deathAnimation, 1f);
+               //Destroy(deathAnimation, deathAnimation.GetComponent<ParticleSystem>().main.duration);
                 Destroy(this.transform.parent.gameObject);
             }
             else if (this.gameObject.CompareTag("Player"))
