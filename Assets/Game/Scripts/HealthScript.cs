@@ -4,6 +4,8 @@ public class HealthScript : MonoBehaviour
 {
     private bool _isAlive;
 
+    [SerializeField]
+    private GameObject deathAnimation;
 
     private int _life;
     public int Life
@@ -73,7 +75,8 @@ public class HealthScript : MonoBehaviour
             {
                 Debug.Log("Alien est mort");
                 ScoreManager.Instance.Score += this.gameObject.GetComponent<AlienScript>().score;
-                //TODO animation de mort
+                Instantiate(deathAnimation, transform.position, transform.rotation);
+                Destroy(deathAnimation, 1f);
                 Destroy(this.transform.parent.gameObject);
             }
             else if (this.gameObject.CompareTag("Player"))

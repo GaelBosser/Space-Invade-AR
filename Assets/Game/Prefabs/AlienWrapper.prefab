@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9addaaecc3e2594c8174933e1a0a01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathAnimation: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
 --- !u!114 &2143950729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642bacda578b51a4389eb02e5c07bce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  score: 250
 --- !u!1 &8717875736933732264
 GameObject:
   m_ObjectHideFlags: 0
