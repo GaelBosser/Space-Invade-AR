@@ -79,7 +79,7 @@ public class HealthScript : MonoBehaviour
             else if (this.gameObject.CompareTag("Player"))
             {
                 Debug.Log("Player est mort");
-                GameManager.Instance.gameProgress = GameProgress.Ended;
+                GameManager.Instance.PlayerDeath();
             }
         }
     }

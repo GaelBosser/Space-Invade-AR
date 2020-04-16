@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 public enum Difficulty { Easy, Normal, Hard }
 public enum GameProgress { NotStarted, InProgress, Paused, Ended }
@@ -9,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
 
+    [Header("Life Interface")]
     [SerializeField]
     private GameObject coeur1;
     [SerializeField]
@@ -26,7 +31,31 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject coeur5;
 
+    [Header("Pause Interface")]
+    [SerializeField]
+    private GameObject pauseImage;
+    [SerializeField]
+    private GameObject pauseText;
+    [SerializeField]
+    private GameObject pauseButton;
+    [SerializeField]
+    private GameObject playButton;
 
+    [Header("Death Interface")]
+    [SerializeField]
+    private GameObject deathImage;
+    [SerializeField]
+    private GameObject sans;
+    [SerializeField]
+    private GameObject replayButton;
+    [SerializeField]
+    private GameObject menuButton;
+
+    [Header("Game Parameters")]
+    public Difficulty difficulty;
+    public GameProgress gameProgress;
+
+    
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -45,13 +74,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Difficulty difficulty;
-    public GameProgress gameProgress;
-
     private void Awake()
     {
         if (_instance != null) Destroy(this);
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         difficulty = Difficulty.Normal;
 
@@ -60,7 +86,58 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if(gameProgress == GameProgress.Ended)
+        {
+            pauseButton.SetActive(false);
+        }
     }
+
+    public void PauseMenuOnPauseButtonClick()
+    {
+
+        gameProgress = GameProgress.Paused;
+        pauseImage.SetActive(true);
+        pauseText.SetActive(true);
+        playButton.SetActive(true);
+        pauseButton.SetActive(false);
+    }
+
+    public void UnpauseMenuOnPauseButtonClick()
+    {
+        gameProgress = GameProgress.InProgress;
+        pauseImage.SetActive(false);
+        pauseText.SetActive(false);
+        playButton.SetActive(false);
+        pauseButton.SetActive(true);
+    }
+
+    public void PlayerDeath()
+    {
+        gameProgress = GameProgress.Ended;
+        deathImage.SetActive(true);
+        sans.SetActive(true);
+        replayButton.SetActive(true);
+        menuButton.SetActive(true);
+        pauseButton.SetActive(false);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("SceneMenu");
+    }
+
+    public void GoToGame()
+    {
+        SceneManager.LoadScene("Robin");
+        //SceneManager.LoadScene("SceneGame");
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene("Robin");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void UpdateLifeInterface()
     {
         int life = player.GetComponent<HealthScript>().Life;
@@ -74,6 +151,7 @@ public class GameManager : MonoBehaviour
         {
             coeur1.SetActive(false);
             coeur1vide.SetActive(true);
+
         }
         if (life >= 2)
         {

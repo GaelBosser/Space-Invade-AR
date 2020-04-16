@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6944631266504001646}
   - component: {fileID: 4153774350531125039}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 388742281422982615, guid: ef6d937b54645ac4a85bee8d2af62ebf, type: 3}
 --- !u!114 &4153774350531125039

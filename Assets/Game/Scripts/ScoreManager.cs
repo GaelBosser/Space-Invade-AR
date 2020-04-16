@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (_instance != null)
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         _score = 0;
     }
