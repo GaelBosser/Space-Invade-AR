@@ -34,8 +34,7 @@ public class ScoreManager : MonoBehaviour
             _score = value;
             if (GameManager.Instance.gameProgress == GameProgress.InProgress)
             {
-                //scoreText.GetComponent<TextMeshPro>().text = $"Score: {_score}";
-                scoreText.GetComponent<Text>().text = $"Score: {_score}";
+                scoreText.GetComponent<TextMeshProUGUI>().text = $"Score: {_score}";
             }
         }
     }
