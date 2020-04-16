@@ -5,12 +5,13 @@ using UnityEngine;
 public class AlienSpawnScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject alienPrefab;
+    private List<GameObject> alienPrefabs;
 
     [SerializeField]
     private List<GameObject> spawnPoints;
 
-    private int selectedIndex = -1;
+    private int selectedSpawn = -1;
+    private int selectedAlien = -1;
     private int lastIndex = -1;
     private float timerBetweenSpawns = 2f;
     private float nextSpawnTimer = 0f;
@@ -28,11 +29,13 @@ public class AlienSpawnScript : MonoBehaviour
             {
                 do
                 {
-                    selectedIndex = Random.Range(0, spawnPoints.Count);
-                } while (selectedIndex == lastIndex);
+                    selectedSpawn = Random.Range(0, spawnPoints.Count);
+                } while (selectedSpawn == lastIndex);
 
-                lastIndex = selectedIndex;
-                Instantiate(alienPrefab, spawnPoints[selectedIndex].transform.position, spawnPoints[selectedIndex].transform.rotation);
+                selectedAlien = Random.Range(0, alienPrefabs.Count);
+
+                lastIndex = selectedSpawn;
+                Instantiate(alienPrefabs[selectedAlien], spawnPoints[selectedSpawn].transform.position, spawnPoints[selectedSpawn].transform.rotation);
                 nextSpawnTimer = timerBetweenSpawns;
             } else
             {
