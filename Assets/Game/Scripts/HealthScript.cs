@@ -66,8 +66,6 @@ public class HealthScript : MonoBehaviour
 
         Debug.Log("-1 pv");
 
-
-
         //Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");
         if (!_isAlive)
         {
