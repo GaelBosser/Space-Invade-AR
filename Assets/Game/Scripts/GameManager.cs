@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         if (_instance != null) Destroy(this);
         //DontDestroyOnLoad(this);
 
-        difficulty = Difficulty.Normal;
+        difficulty = Settings.difficulty;
 
         gameProgress = GameProgress.InProgress;
     }
@@ -119,7 +119,8 @@ public class GameManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("SceneMenu");
+        gameProgress = GameProgress.NotStarted;
+        SceneManager.LoadScene("Menu");
     }
 
     public void GoToGame()

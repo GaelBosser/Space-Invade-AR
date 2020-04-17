@@ -9,6 +9,11 @@ TagManager:
   - Play
   - End
   - Bonus
+  - soundActivate
+  - soundMute
+  - difficultyEasy
+  - difficultyNormal
+  - difficultyHard
   layers:
   - Default
   - TransparentFX
