@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Linq;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum Difficulty { Easy, Normal, Hard }
@@ -177,9 +173,17 @@ public class GameManager : MonoBehaviour
         {
             coeur4.SetActive(true);
         }
+        else
+        {
+            coeur4.SetActive(false);
+        }
         if (life == 5)
         {
             coeur5.SetActive(true);
+        }
+        else
+        {
+            coeur5.SetActive(false);
         }
     }
 }

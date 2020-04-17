@@ -8,6 +8,7 @@ TagManager:
   - Pause
   - Play
   - End
+  - Bonus
   layers:
   - Default
   - TransparentFX

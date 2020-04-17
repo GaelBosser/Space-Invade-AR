@@ -35,14 +35,18 @@ public class BulletScript : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Alien")) {
+        if (other.transform.CompareTag("Alien"))
+        {
             other.gameObject.GetComponent<HealthScript>().UpdateLifeAndGetNewState(damageDone);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+        }
+        else if (other.transform.CompareTag("Bonus"))
+        {
+            Debug.Log("bonus");
+            //On rajoute 1 vie a l'utilisateur donc damagedone = -1
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScript>().UpdateLifeAndGetNewState(-1);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
-
-    /* public void OnBecameInvisible()
-     {
-         Destroy(gameObject, 5);
-     }*/
 }
