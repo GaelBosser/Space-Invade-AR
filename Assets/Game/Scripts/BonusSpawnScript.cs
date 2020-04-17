@@ -25,12 +25,12 @@ public class BonusSpawnScript : MonoBehaviour
                 break;
 
             case Difficulty.Normal:
-                timerBetweenBonusSpawns = 50f;
-                bonusLifeTime = 7f;
+                timerBetweenBonusSpawns = 45f;
+                bonusLifeTime = 7.5f;
                 break;
 
             case Difficulty.Hard:
-                timerBetweenBonusSpawns = 150f;
+                timerBetweenBonusSpawns = 60f;
                 bonusLifeTime = 5f;
                 break;
 
