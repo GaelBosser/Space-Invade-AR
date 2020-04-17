@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class HealthScript : MonoBehaviour
 {
     private bool _isAlive;
+
+    [SerializeField]
+    private GameObject deathAnimation;
 
     private int _life;
     public int Life
@@ -12,32 +15,75 @@ public class HealthScript : MonoBehaviour
         {
             _life = value;
             _isAlive = _life > 0;
+
+            if (this.gameObject.CompareTag("Player"))
+            {
+                GameManager.Instance.UpdateLifeInterface();
+            }
         }
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Life = 3; //TODO: Set the number of lives according to the difficulty selected in the settings.
+        if (gameObject.CompareTag("Alien"))
+        {
+            switch (GameManager.Instance.difficulty)
+            {
+                case Difficulty.Easy:
+                    Life = 1;
+                    break;
+                case Difficulty.Normal:
+                    Life = 2;
+                    break;
+                case Difficulty.Hard:
+                    Life = 3;
+                    break;
+                default:
+                    Life = 2;
+                    break;
+            }
+        }
+        else if (gameObject.CompareTag("Player"))
+        {
+            Life = 3;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
     /// Updates the life of the current gameobject according to the damage taken, and get the new state of the gameobject (still alive or not)
     /// </summary>
     /// <param name="damageTaken">Damage taken to deduct from life</param>
-    /// <returns>Returns whether or not the current game-object is still alive.</returns>
-    public bool UpdateLifeAndGetNewState(int damageTaken)
+    public void UpdateLifeAndGetNewState(int damageTaken)
     {
-        Life += damageTaken;
+        Life -= damageTaken;
 
-        Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");
+        if (this.gameObject.CompareTag("Player") && damageTaken > 0)
+        {
+            Debug.Log("-1 pv");
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.Play();
+        }
 
-        return _isAlive;
+        //Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");
+        if (!_isAlive)
+        {
+            if (this.gameObject.CompareTag("Alien"))
+            {
+                ScoreManager.Instance.Score += this.gameObject.GetComponent<AlienScript>().score;
+                Instantiate(deathAnimation, transform.position, transform.rotation);
+                Destroy(this.transform.parent.gameObject);
+            }
+            else if (this.gameObject.CompareTag("Player"))
+            {
+                GameManager.Instance.PlayerDeath();
+            }
+        }
     }
 }
