@@ -8,6 +8,7 @@ public class Settings : MonoBehaviour
     public static bool mute;
     public static Difficulty difficulty;
     private bool isFirstLoad;
+
     // Start is called before the first frame update
     void Start()
     {

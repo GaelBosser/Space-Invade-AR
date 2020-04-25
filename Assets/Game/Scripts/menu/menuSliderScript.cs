@@ -6,17 +6,10 @@ using System;
 
 public class MenuSliderScript : MonoBehaviour
 {
-
     public Slider slider;
     private float position = 0.5F;
     private float speed = 1;
     private float oldPos = 0;
-
-    // Start is called before the first frame update
-
-    private void Awake()
-    {
-    }
 
     void Start()
     {
