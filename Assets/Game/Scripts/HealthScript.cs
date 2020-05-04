@@ -67,8 +67,12 @@ public class HealthScript : MonoBehaviour
         if (this.gameObject.CompareTag("Player") && damageTaken > 0)
         {
             Debug.Log("-1 pv");
-            AudioSource audioSource = GetComponent<AudioSource>();
-            audioSource.Play();
+
+            if (!GameManager.Instance.mute)
+            {
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.Play();
+            }
         }
 
         //Debug.Log($"{nameof(UpdateLifeAndGetNewState)} [{gameObject.name}] : {Life} - {_isAlive}");

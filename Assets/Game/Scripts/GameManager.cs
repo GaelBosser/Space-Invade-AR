@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Parameters")]
     public Difficulty difficulty;
     public GameProgress gameProgress;
+    public bool mute;
 
     
     private static GameManager _instance;
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         //DontDestroyOnLoad(this);
 
         difficulty = Settings.difficulty;
+        mute = Settings.mute;
 
         gameProgress = GameProgress.InProgress;
     }
